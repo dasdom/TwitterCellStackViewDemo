@@ -13,15 +13,16 @@ class TweetCell: UITableViewCell {
     @IBOutlet var handleLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var tweetLabel: UILabel!
+    @IBOutlet var quoteHandle: UILabel!
     @IBOutlet var quoteLabel: UILabel!
     @IBOutlet var quoteStackView: UIStackView!
     
     override func awakeFromNib() {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .yellowColor()
+        view.backgroundColor = .lightGrayColor()
         
-        quoteStackView.insertSubview(view, belowSubview: quoteLabel)
+        quoteStackView.insertSubview(view, atIndex: 0)
         view.topAnchor.constraintEqualToAnchor(quoteStackView.topAnchor).active = true
         view.bottomAnchor.constraintEqualToAnchor(quoteStackView.bottomAnchor).active = true
         view.leadingAnchor.constraintEqualToAnchor(quoteStackView.leadingAnchor).active = true

@@ -10,7 +10,7 @@ import UIKit
 
 class TwitterTableViewController: UITableViewController {
 
-    let tweets = [["handle": "@dasdom", "date": "2 m", "tweet": "UIStackViews are so awesome! Looking forward to rewrite all UI code. Presumable some time next year.", "quote": "Check out my UIStackView tutorial. It's awesome!"],
+    let tweets = [["handle": "@dasdom", "date": "2 m", "tweet": "UIStackViews are so awesome! Looking forward to rewrite all UI code. Presumable some time next year.", "quotehandle": "@tim_cook", "quote": "Check out my UIStackView tutorial. It's awesome!"],
     ["handle": "@dasdom", "date": "3 m", "tweet": "This is a tweet without a quote to show that this works as well."]]
     
     override func viewDidLoad() {
@@ -39,7 +39,9 @@ class TwitterTableViewController: UITableViewController {
         cell.handleLabel.text = tweet["handle"]
         cell.dateLabel.text = tweet["date"]
         cell.tweetLabel.text = tweet["tweet"]
+        cell.quoteHandle.text = tweet["quotehandle"]
         cell.quoteLabel.text = tweet["quote"]
+        cell.quoteStackView.hidden = tweet["quote"]?.characters.count < 1
         
         return cell
     }
