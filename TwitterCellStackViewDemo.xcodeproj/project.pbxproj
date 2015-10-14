@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F2195C911BCEE8AB0025553C /* TweetCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2195C901BCEE8AB0025553C /* TweetCodeCell.swift */; settings = {ASSET_TAGS = (); }; };
 		F2401D4B1BC969720009551C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2401D4A1BC969720009551C /* AppDelegate.swift */; };
 		F2401D501BC969720009551C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F2401D4E1BC969720009551C /* Main.storyboard */; };
 		F2401D521BC969720009551C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2401D511BC969720009551C /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F2195C901BCEE8AB0025553C /* TweetCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCodeCell.swift; sourceTree = "<group>"; };
 		F2401D471BC969720009551C /* TwitterCellStackViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterCellStackViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2401D4A1BC969720009551C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F2401D4F1BC969720009551C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				F2401D4A1BC969720009551C /* AppDelegate.swift */,
 				F2401D5E1BC975C20009551C /* TwitterTableViewController.swift */,
 				F2401D5C1BC973C20009551C /* TweetCell.swift */,
+				F2195C901BCEE8AB0025553C /* TweetCodeCell.swift */,
 				F2401D4E1BC969720009551C /* Main.storyboard */,
 				F2401D511BC969720009551C /* Assets.xcassets */,
 				F2401D531BC969720009551C /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			files = (
 				F2401D4B1BC969720009551C /* AppDelegate.swift in Sources */,
 				F2401D5D1BC973C20009551C /* TweetCell.swift in Sources */,
+				F2195C911BCEE8AB0025553C /* TweetCodeCell.swift in Sources */,
 				F2401D5F1BC975C20009551C /* TwitterTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +291,7 @@
 				F2401D5B1BC969720009551C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
