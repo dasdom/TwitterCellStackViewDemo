@@ -14,9 +14,31 @@ class TweetCodeCell: UITableViewCell {
     let handleLabel: UILabel
     let dateLabel: UILabel
     let tweetLabel: UILabel
-    let quoteHandle: UILabel
-    let quoteLabel: UILabel
-    let quoteStackView: UIStackView
+    
+    private let quoteHandle: UILabel
+    private let quoteLabel: UILabel
+    private let quoteStackView: UIStackView
+    private let quoteHostStackView: UIStackView
+    
+    private var quotePaddingConstraints = [NSLayoutConstraint]()
+    
+    var quote: (handle: String?, quoteString: String?) {
+        didSet {
+            quoteHandle.text = quote.handle
+            quoteLabel.text = quote.quoteString
+            if let _ = quote.handle, _ = quote.quoteString {
+                quoteStackView.hidden = false
+                quoteStackView.spacing = 2
+                quoteHostStackView.hidden = false
+                NSLayoutConstraint.activateConstraints(quotePaddingConstraints)
+            } else {
+                quoteStackView.hidden = true
+                quoteStackView.spacing = 0
+                quoteHostStackView.hidden = true
+                NSLayoutConstraint.deactivateConstraints(quotePaddingConstraints)
+            }
+        }
+    }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         
@@ -44,13 +66,17 @@ class TweetCodeCell: UITableViewCell {
         quoteStackView = UIStackView(arrangedSubviews: [quoteHandle, quoteLabel])
         quoteStackView.axis = .Vertical
         quoteStackView.alignment = .Center
+//        quoteStackView.distribution = .EqualSpacing
 //        quoteStackView.spacing = 2
+        
+        quoteHostStackView = UIStackView(arrangedSubviews: [quoteStackView])
+        quoteHostStackView.alignment = .Center
         
         let quoteStackViewBackgroundView = UIView()
         quoteStackViewBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         quoteStackViewBackgroundView.backgroundColor = .lightGrayColor()
         
-        let tweetStackView = UIStackView(arrangedSubviews: [tweetLabel, quoteStackView])
+        let tweetStackView = UIStackView(arrangedSubviews: [tweetLabel, quoteHostStackView])
         tweetStackView.axis = .Vertical
         tweetStackView.spacing = 5
         
@@ -63,23 +89,27 @@ class TweetCodeCell: UITableViewCell {
         stackView.alignment = .Top
         stackView.spacing = 5
         
+        quotePaddingConstraints.append(quoteStackView.topAnchor.constraintEqualToAnchor(quoteHostStackView.topAnchor, constant: 10))
+        quotePaddingConstraints.append(quoteStackView.bottomAnchor.constraintEqualToAnchor(quoteHostStackView.bottomAnchor, constant: -10))
+        
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .whiteColor()
         
         contentView.addSubview(stackView)
-        quoteStackView.insertSubview(quoteStackViewBackgroundView, atIndex: 0)
+        quoteHostStackView.insertSubview(quoteStackViewBackgroundView, atIndex: 0)
         
-        let views = ["stackView": stackView, "quoteBackground": quoteStackViewBackgroundView, "quoteLabel": quoteLabel]
+        let views = ["stackView": stackView, "quoteBackground": quoteStackViewBackgroundView, "quoteLabel": quoteLabel, "quoteStackView": quoteStackView]
         var layoutConstraints = [NSLayoutConstraint]()
         layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("|-10-[stackView]-|", options: [], metrics: nil, views: views)
         layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[stackView]-(10@751)-|", options: [], metrics: nil, views: views)
         layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("|[quoteBackground]|", options: [], metrics: nil, views: views)
         layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[quoteBackground]|", options: [], metrics: nil, views: views)
-        layoutConstraints += NSLayoutConstraint.constraintsWithVisualFormat("|-10-[quoteLabel]-10-|", options: [], metrics: nil, views: views)
+        quotePaddingConstraints +=  NSLayoutConstraint.constraintsWithVisualFormat("|-10-[quoteLabel]-10-|", options: [], metrics: nil, views: views)
         layoutConstraints.append(avatarImageView.widthAnchor.constraintEqualToConstant(80))
         layoutConstraints.append(avatarImageView.heightAnchor.constraintEqualToConstant(80))
         layoutConstraints.append(quoteLabel.trailingAnchor.constraintEqualToAnchor(quoteHandle.trailingAnchor))
         layoutConstraints.append(quoteLabel.leadingAnchor.constraintEqualToAnchor(quoteHandle.leadingAnchor))
+        layoutConstraints += quotePaddingConstraints
         NSLayoutConstraint.activateConstraints(layoutConstraints)
     }
 

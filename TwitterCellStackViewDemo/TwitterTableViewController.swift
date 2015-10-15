@@ -42,16 +42,8 @@ class TwitterTableViewController: UITableViewController {
         cell.handleLabel.text = tweet["handle"]
         cell.dateLabel.text = tweet["date"]
         cell.tweetLabel.text = tweet["tweet"]
-        cell.quoteHandle.text = tweet["quotehandle"]
-        cell.quoteLabel.text = tweet["quote"]
-        if tweet["quote"]?.characters.count < 1 {
-            cell.quoteStackView.hidden = true
-            cell.quoteStackView.spacing = 0
-        } else {
-            cell.quoteStackView.hidden = false
-            cell.quoteStackView.spacing = 2
-        }
-        
+        cell.quote = (tweet["quotehandle"], tweet["quote"])
+
         return cell
     }
     
